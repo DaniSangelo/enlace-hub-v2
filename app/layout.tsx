@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Cinzel, Raleway } from "next/font/google";
+import { Cinzel, Raleway, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { cn } from "./_lib/utils";
+
+const instrumentSerifHeading = Instrument_Serif({subsets:['latin'],weight:['400'],variable:'--font-heading'});
 
 const cinzelDisplay = Cinzel({
   variable: "--font-display",
   subsets: ["latin"],
 });
 
-const raleway = Raleway({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
+const raleway = Raleway({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${cinzelDisplay.variable} ${raleway.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", cinzelDisplay.variable, "font-sans", raleway.variable, instrumentSerifHeading.variable)}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
